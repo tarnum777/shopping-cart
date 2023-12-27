@@ -1,4 +1,4 @@
-# Shopping cart checkout system using Symfony/Workflow and ORM
+# 
 
 ## Installation
 #### Requirements
