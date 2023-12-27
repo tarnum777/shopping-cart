@@ -5,6 +5,7 @@
 - `Docker` and `docker-compose`
 
 #### Install
+0. Customize your .docker/.env file if needed other settings
 1. Clone the repository and execute
 ```sh
 cd ./docker && docker-compose up --build
