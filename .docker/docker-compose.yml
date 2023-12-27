@@ -1,0 +1,39 @@
+version: '3.9'
+
+services:
+  php:
+    build:
+      context: php
+    container_name: php
+    environment:
+      PHP_IDE_CONFIG: "serverName=app" # set same server name in the PHP IDE settings (PHP->Servers)
+    volumes:
+      - ${APP_PATH}:/var/www/app
+      - ./logs/php:/var/www/app/var/log
+      - ./php/config/custom.ini:/usr/local/etc/php/conf.d/docker-php-custom-config.ini
+  nginx:
+    container_name: nginx
+    build:
+      context: nginx
+      args:
+        MAX_EXECUTION_TIME: ${MAX_EXECUTION_TIME}
+        SERVER_NAME: ${SERVER_NAME}
+    ports:
+      - "8888:80"
+    volumes:
+      - ./logs/nginx/:/var/log/nginx
+  mysql:
+    container_name: mysql
+    image: mysql:8.0
+    command: ["--default-authentication-plugin=mysql_native_password"]
+    # alternatively run: ALTER USER 'sf4-contact-form'@'%' IDENTIFIED WITH mysql_native_password BY 'sf4-contact-form';
+    volumes:
+      - "./mysql/config:/etc/mysql/conf.d"
+      - "./.data/db:/var/lib/mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE_APP}
+      MYSQL_USER: ${MYSQL_USER_APP}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD_APP}
+    ports:
+      - "3306:3306"
