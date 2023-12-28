@@ -29,11 +29,11 @@ services:
     # alternatively run: ALTER USER 'sf4-contact-form'@'%' IDENTIFIED WITH mysql_native_password BY 'sf4-contact-form';
     volumes:
       - "./mysql/config:/etc/mysql/conf.d"
-      - "./.data/db:/var/lib/mysql"
+#      - "./.data/db:/var/lib/mysql"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE_APP}
       MYSQL_USER: ${MYSQL_USER_APP}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD_APP}
     ports:
-      - "3306:3306"
+      - "33306:3306"
