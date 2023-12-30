@@ -1,0 +1,9 @@
+controllers:
+  resource:
+    path: ../../src/Action/
+    namespace: App\Action
+  type: attribute
+
+kernel:
+  resource: App\Kernel
+  type: attribute

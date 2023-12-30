@@ -11,6 +11,10 @@ services:
       - ${APP_PATH}:/var/www/app
       - ./logs/php:/var/www/app/var/log
       - ./php/config/custom.ini:/usr/local/etc/php/conf.d/docker-php-custom-config.ini
+    depends_on:
+      - mysql
+    networks:
+      - internal
   nginx:
     container_name: nginx
     build:
@@ -22,6 +26,10 @@ services:
       - "8888:80"
     volumes:
       - ./logs/nginx/:/var/log/nginx
+    depends_on:
+      - php
+    networks:
+      - internal
   mysql:
     container_name: mysql
     image: mysql:8.0
@@ -37,3 +45,8 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD_APP}
     ports:
       - "33306:3306"
+    networks:
+      - internal
+networks:
+  internal:
+    driver: bridge
