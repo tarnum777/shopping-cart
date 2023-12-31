@@ -1,6 +1,8 @@
 - 
 - create entities with make:entity
 Order, Address, Product, OrderItem,  Cart, CartItem, 
+- Address: name, address, telephone number, and email
+- Order : address, total(float)
 SessionAddress(id, session_id, address_id). Repo(save and fetchBySessionId)
 - ?? Checkout(StateMachine, has Cart, Address(def is null), Order when placed, saved in session),
 - set ProductRepository as preference for ProductRepositoryInterface
