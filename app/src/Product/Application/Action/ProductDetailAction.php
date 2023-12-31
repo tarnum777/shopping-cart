@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Action;
+namespace App\Product\Application\Action;
 
-use App\Entity\Product;
-use App\Repository\ProductRepository;
-use App\Responder\ProductDetailResponder;
-use App\Responder\ProductListResponder;
-use Symfony\Component\HttpFoundation\Request;
+use App\Product\Domain\Entity\Product;
+use App\Product\Infrastructure\Repository\ProductRepository;
+use App\Product\Infrastructure\Responder\ProductDetailResponder;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Action;
+namespace App\Product\Application\Action;
 
-use App\Repository\ProductRepository;
-use App\Responder\ProductListResponder;
+use App\Product\Domain\Repository\ProductRepositoryInterface;
+use App\Product\Infrastructure\Responder\ProductListResponder;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,12 +15,12 @@ class ProductListAction
      */
     private ProductListResponder $responder;
     /**
-     * @var ProductRepository
+     * @var ProductRepositoryInterface
      */
-    private ProductRepository $productRepository;
+    private ProductRepositoryInterface $productRepository;
 
 
-    public function __construct(ProductListResponder $responder, ProductRepository $productRepository)
+    public function __construct(ProductListResponder $responder, ProductRepositoryInterface $productRepository)
     {
         $this->responder = $responder;
         $this->productRepository = $productRepository;

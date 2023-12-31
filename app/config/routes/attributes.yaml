@@ -1,7 +1,7 @@
 controllers:
   resource:
-    path: ../../src/Action/
-    namespace: App\Action
+    path: ../../src/Product/Application/Action/
+    namespace: App\Product\Application\Action
   type: attribute
 
 kernel:

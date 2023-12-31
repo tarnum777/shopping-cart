@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Entity;
+namespace App\Product\Domain\Entity;
 
-use App\Repository\ProductRepository;
+use App\Product\Infrastructure\Repository\ProductRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 

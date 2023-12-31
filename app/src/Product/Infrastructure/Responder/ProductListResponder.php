@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Responder;
+namespace App\Product\Infrastructure\Responder;
 
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
