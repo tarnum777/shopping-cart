@@ -22,6 +22,7 @@ class ProductListResponder
      */
     public function __invoke(array $products): Response
     {
+//        return new Response('<div>AAAAAAAA</div>');
         return new Response($this->twig->render('Product/list.html.twig', [
             'products' => $products
         ]));
