@@ -1,4 +1,4 @@
-FROM debian
+FROM nginx
 ARG MAX_EXECUTION_TIME
 ARG SERVER_NAME
 
@@ -14,11 +14,14 @@ RUN echo "upstream php-upstream { server php:9000; }" > /etc/nginx/conf.d/upstre
 RUN usermod -u 1000 www-data
 
 # Configure the virtual host
-RUN ln -s /etc/nginx/sites-available/app.conf /etc/nginx/sites-enabled/app
-RUN rm /etc/nginx/sites-enabled/default
+RUN mkdir "/etc/nginx/sites-enabled/"
+RUN ln -s /etc/nginx/sites-available/app.conf /etc/nginx/sites-enabled/app.conf
+#RUN rm /etc/nginx/sites-enabled/default.conf
 
 # Run Nginx
-CMD ["nginx"]
+#CMD ["nginx"]
+CMD ["nginx", "-g", "daemon off;"]
+
 
 # Expose ports
 EXPOSE 80

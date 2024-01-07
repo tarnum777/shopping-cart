@@ -29,7 +29,7 @@ class CartResponder
      * @throws SyntaxError
      * @throws LoaderError
      */
-    public function __invoke(Request $request, Order $order, FormInterface $form): Response
+    public function __invoke(Request $request, FormInterface $form, ?Order $order): Response
     {
         $form = $this->formFactory->create(CartType::class, $order);
         $form->handleRequest($request);

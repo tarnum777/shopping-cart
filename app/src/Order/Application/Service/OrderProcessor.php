@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Order\Application;
+namespace App\Order\Application\Service;
 
 use App\Order\Domain\Entity\Order;
 use App\Order\Domain\Factory\OrderFactory;

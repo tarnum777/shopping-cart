@@ -2,12 +2,11 @@
 
 namespace App\Product\Application\Action;
 
-use App\Order\Application\OrderProcessorInterface;
+use App\Order\Application\Service\OrderProcessorInterface;
 use App\Product\Domain\Entity\Product;
 use App\Product\Domain\Repository\ProductRepositoryInterface;
 use App\Product\Infrastructure\Form\AddToCartType;
 use App\Product\Infrastructure\Responder\ProductDetailResponder;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -46,7 +45,7 @@ class ProductDetailAction
             $request->getSession()->getFlashBag()->add('notice',
                 sprintf('You have added %d of %s to your cart!', $item->getQuantity(), $product->getName())
             );
-            return $this->redirectToRoute('product.detail', ['id' => $product->getId()]);
+//            return $this->redirectToRoute('product.detail', ['id' => $product->getId()]);
         }
 
         $responder = $this->responder;

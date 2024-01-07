@@ -4,8 +4,8 @@
 
 {% block body %}
     <div class="container mt-4">
-        <h1>Your Cart</h1>
-        {% if order.items.count > 0 %}
+        {% if order is defined and order is not null and order.items.count > 0 %}
+            <h1>Your Cart</h1>
             <div class="row mt-4">
                 <div class="col-md-8">
                     {{ form_start(form) }}
@@ -60,7 +60,7 @@
             </div>
         {% else %}
             <div class="alert alert-info">
-                Your cart is empty. Go to the <a href="{{ path('home') }}">product list</a>.
+                Your cart is empty. Go to the <a href="{{ path('product.list') }}">product list</a>.
             </div>
         {% endif %}
     </div>

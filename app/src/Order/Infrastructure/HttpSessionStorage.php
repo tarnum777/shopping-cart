@@ -2,7 +2,7 @@
 
 namespace App\Order\Infrastructure;
 
-use App\Order\Application\SessionStorageInterface;
+use App\Order\Application\Service\SessionStorageInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 

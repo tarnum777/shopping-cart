@@ -20,6 +20,7 @@ readonly class ProductListAction
     #[Route('/', name: 'product.list')]
     public function __invoke(Request $request): Response
     {
+        return new Response('<div>AAAAAAAA</div>');
         $products = $this->productRepository->findAll();
         $responder = $this->responder;
         return $responder($products);

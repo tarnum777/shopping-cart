@@ -7,10 +7,13 @@ services:
     container_name: php
     environment:
       PHP_IDE_CONFIG: "serverName=app" # set same server name in the PHP IDE settings (PHP->Servers)
+    expose:
+      - 9000
     volumes:
       - ${APP_PATH}:/var/www/app
       - ./logs/php:/var/www/app/var/log
-      - ./php/config/custom.ini:/usr/local/etc/php/conf.d/docker-php-custom-config.ini
+      - ./php/config/custom-php.ini:/usr/local/etc/php/conf.d/docker-php-custom-config.ini
+#      - ./php/config/custom-php-fpm.conf:/usr/local/etc/php-fpm.d/docker-php-fpm-custom-config.conf
     depends_on:
       - mysql
     networks:
@@ -25,6 +28,9 @@ services:
     ports:
       - "8888:80"
     volumes:
+      - ${APP_PATH}:/var/www/app
+#      - ./app.conf:/etc/nginx/sites-available/app.conf
+#      - ./nginx.conf:/usr/local/etc/php-fpm.d/docker-php-fpm-custom-config.conf
       - ./logs/nginx/:/var/log/nginx
     depends_on:
       - php
