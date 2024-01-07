@@ -25,4 +25,11 @@ services:
     App\Product\Application\Action\:
         resource: '../src/Product/Application/Action'
         tags: [ 'controller.service_arguments' ]
+    App\Order\Application\Action\:
+        resource: '../src/Order/Application/Action'
+        tags: [ 'controller.service_arguments' ]
     App\Product\Domain\Repository\ProductRepositoryInterface: '@App\Product\Infrastructure\Repository\ProductRepository'
+    App\Order\Domain\Repository\OrderRepositoryInterface: '@App\Order\Infrastructure\Repository\OrderRepository'
+    App\OrderItem\Domain\Repository\OrderItemRepositoryInterface: '@App\OrderItem\Infrastructure\Repository\OrderItemRepository'
+    App\Customer\Domain\Repository\AddressRepositoryInterface: '@App\Customer\Infrastructure\Repository\AddressRepository'
+    App\Order\Application\OrderProcessorInterface: '@App\Order\Application\OrderProcessor'

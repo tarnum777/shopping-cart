@@ -3,6 +3,10 @@ controllers:
     path: ../../src/Product/Application/Action/
     namespace: App\Product\Application\Action
   type: attribute
+#  resourceOrder:
+#    path: ../../src/Order/Application/Action/
+#    namespace: App\Order\Application\Action
+#    type: attribute
 
 kernel:
   resource: App\Kernel

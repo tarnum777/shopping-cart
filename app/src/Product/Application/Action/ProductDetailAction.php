@@ -2,33 +2,53 @@
 
 namespace App\Product\Application\Action;
 
+use App\Order\Application\OrderProcessorInterface;
 use App\Product\Domain\Entity\Product;
-use App\Product\Infrastructure\Repository\ProductRepository;
+use App\Product\Domain\Repository\ProductRepositoryInterface;
+use App\Product\Infrastructure\Form\AddToCartType;
 use App\Product\Infrastructure\Responder\ProductDetailResponder;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ProductDetailAction
 {
-    /**
-     * @var ProductDetailResponder
-     */
-    private ProductDetailResponder $responder;
-    /**
-     * @var ProductRepository
-     */
-    private ProductRepository $productRepository;
-
-
-    public function __construct(ProductDetailResponder $responder, ProductRepository $productRepository)
+    public function __construct(
+        private ProductDetailResponder     $responder,
+        private ProductRepositoryInterface $productRepository,
+        private FormFactoryInterface       $formFactory,
+        private OrderProcessorInterface    $orderProcessor,
+    )
     {
-        $this->responder = $responder;
-        $this->productRepository = $productRepository;
     }
 
     #[Route('/product/{id}', name: 'product.detail')]
-    public function __invoke(Product $product): Response
+    public function __invoke(Product $product, Request $request): Response
     {
+        $form = $this->formFactory->create(AddToCartType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $item = $form->getData();
+            $item->setProduct($product);
+
+            $order = $this->orderProcessor->getSessionOrder();
+            if (is_null($order)) {
+                $order = $this->orderProcessor->createOrder();
+            }
+            $order->addItem($item)
+                ->setUpdatedAt(new \DateTime());
+
+            $this->orderProcessor->saveOrder($order);
+            $this->orderProcessor->setSessionOrder($order);
+            $request->getSession()->getFlashBag()->add('notice',
+                sprintf('You have added %d of %s to your cart!', $item->getQuantity(), $product->getName())
+            );
+            return $this->redirectToRoute('product.detail', ['id' => $product->getId()]);
+        }
+
         $responder = $this->responder;
         return $responder($product);
     }

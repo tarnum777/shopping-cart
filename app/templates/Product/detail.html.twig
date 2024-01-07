@@ -4,6 +4,13 @@
 
 {% block body %}
     <div class="container">
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="flash-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
         <div class="row mt-3 mb-4">
             <div class="col-md-4">
                 <img src="https://via.placeholder.com/600x400" alt="{{ product.name }}" class="img-fluid">
@@ -13,13 +20,20 @@
                 <h2>{{ product.price }} €</h2>
                 <hr>
                 <b>Description: </b>{{ product.description }}
-                <form class="mt-4 p-4 bg-light" method="post">
-                    <div class="form-group">
-                        <label for="quantity">Quantity</label>
-                        <input type="number" class="form-control" id="quantity">
+                {{ form_start(form, {'attr': {'class': 'mt-4 p-4 bg-light'}}) }}
+                <div class="form-group">
+                    {{ form_label(form.quantity) }}
+                    {{ form_widget(form.quantity, {
+                        'attr': {
+                            'class': 'form-control ' ~ (form.quantity.vars.valid ? '' : 'is-invalid')
+                        }
+                    }) }}
+                    <div class="invalid-feedback">
+                        {{ form_errors(form.quantity) }}
                     </div>
-                    <button class="btn btn-warning">Add to Cart</button>
-                </form>
+                </div>
+                {{ form_widget(form.add, {'attr': {'class': 'btn btn-warning w-25'}}) }}
+                {{ form_end(form) }}
             </div>
         </div>
     </div>

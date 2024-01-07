@@ -15,8 +15,23 @@
         {% block javascripts %}
 {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
+        <nav class="navbar navbar-dark bg-dark sticky-top">
+            <div class="navbar-nav">
+                <a href="{{ path('cart') }}" class="btn btn-light">
+                    Cart
+                </a>
+            </div>
+        </nav>
+
     </head>
     <body>
+{#        {% for label, messages in app.flashes %}#}
+{#            {% for message in messages %}#}
+{#                <div class="flash-{{ label }}">#}
+{#                    {{ message }}#}
+{#                </div>#}
+{#            {% endfor %}#}
+{#        {% endfor %}#}
         {% block body %}{% endblock %}
     </body>
 </html>

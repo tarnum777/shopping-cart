@@ -3,3 +3,6 @@
 #        path: ../src/Action/
 #        namespace: App\Product\Application\Action
 #    type: attribute
+cart:
+  path: /cart
+  controller: App\Order\Application\Action\CartAction::__invoke

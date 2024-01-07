@@ -4,8 +4,10 @@ Order, Address, Product, OrderItem,  Cart, CartItem,
 - Address: name, address, telephone number, and email
 - Order : address, total(float)
 SessionAddress(id, session_id, address_id). Repo(save and fetchBySessionId)
+- in session checkout_id to load prev session state. Also by session id loaded all prev addresses
 - ?? Checkout(StateMachine, has Cart, Address(def is null), Order when placed, saved in session),
 - set ProductRepository as preference for ProductRepositoryInterface
+- ?move controllers to Infrastructure layer?
 
 - create form and template for adding 1 cart item. How to use it in cycle?
 - for adding item to Cart use CartItem and Validator for it. coding-exercise-be-master/app had validators forms

@@ -8,22 +8,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ProductListAction
+readonly class ProductListAction
 {
-    /**
-     * @var ProductListResponder
-     */
-    private ProductListResponder $responder;
-    /**
-     * @var ProductRepositoryInterface
-     */
-    private ProductRepositoryInterface $productRepository;
-
-
-    public function __construct(ProductListResponder $responder, ProductRepositoryInterface $productRepository)
+    public function __construct(
+        private ProductListResponder       $responder,
+        private ProductRepositoryInterface $productRepository
+    )
     {
-        $this->responder = $responder;
-        $this->productRepository = $productRepository;
     }
 
     #[Route('/', name: 'product.list')]
