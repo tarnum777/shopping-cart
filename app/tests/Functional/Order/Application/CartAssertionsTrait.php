@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Order\Application;
+namespace App\Tests\Functional\Order\Application;
 
 use PHPUnit\Framework\Assert;
 use Symfony\Component\DomCrawler\Crawler;

@@ -8,11 +8,11 @@ use App\Product\Domain\Entity\Product;
 
 class OrderItemFactory
 {
-    public function create(Product $product): OrderItem
+    public function create(Product $product, ?int $quantity = 1): OrderItem
     {
         $item = new OrderItem();
         $item->setProduct($product);
-        $item->setQuantity(1);
+        $item->setQuantity($quantity);
 
         return $item;
     }

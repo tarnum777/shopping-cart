@@ -4,7 +4,9 @@ namespace App\Order\Domain\Entity;
 
 use App\Order\Infrastructure\Repository\OrderItemRepository;
 use App\Product\Domain\Entity\Product;
+use Doctrine\DBAL\Types\IntegerType;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: OrderItemRepository::class)]
@@ -19,8 +21,9 @@ class OrderItem
     #[ORM\JoinColumn(nullable: false)]
     private ?Product $product = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type: IntegerType::class)]
     #[Assert\NotBlank()]
+    #[Assert\GreaterThanOrEqual(1)]
     private ?int $quantity = null;
 
     #[ORM\ManyToOne(inversedBy: 'items')]

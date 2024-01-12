@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Tests\Order\Application\Action;
+namespace App\Tests\Functional\Order\Application\Action;
 
-use App\Tests\Order\Application\CartAssertionsTrait;
+use App\Tests\Functional\Order\Application\CartAssertionsTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\BrowserKit\AbstractBrowser;
 
